@@ -61,3 +61,5 @@ export const updateUserHandler = (req: Request, res: Response) => {
     throw new Error("User not found");
   }
 };
+// rabase è l'inserimento della branch secondaria nel ramo principale considerando che il ramo principale sia andato avanti anche lui nello sviluppo
+// merge è l'inserimento... con il ramo principale invece che si è fermato nel momento in cui sei andato nel ramo secondario
