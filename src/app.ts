@@ -1,9 +1,9 @@
 import express from "express";
 import { router as userApi } from "./routes/user.routes";
-import { router as postApi } from "./routes/post.routes"; //ancora da settare
+// import { router as postApi } from "./routes/post.routes"; //ancora da settare
 
 const app = express();
-// app.use(express.json());
+app.use(express.json());
 const PORT = 3000;
 
 app.get("/", (req, res) => {
@@ -11,8 +11,11 @@ app.get("/", (req, res) => {
 });
 
 app.use("/users", userApi);
-app.use("/posts", postApi);
+// app.use("/posts", postApi);
 
+/*
 app.listen(PORT, () => {
   console.log(`Server is online at http://localhost:${PORT}`);
 });
+*/
+export default app;

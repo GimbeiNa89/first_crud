@@ -1,12 +1,27 @@
 import { Request, Response } from "express";
-import { users } from "../data/user.data";
-import { User } from "../types/user.type";
+// import { users } from "../data/user.data";
+import { IUser } from "../types/user.type";
+import { createUser, showUsers } from "../services/users.service";
 // import { v4 as uuidv4 } from "uuid"; non l'ho utilizzato ma è un modo valido per aggiungere un numero casuale
 
-export const getUsers = (req: Request, res: Response) => {
-  res.status(200).json(users);
+export const getUsers = async (req: Request, res: Response) => {
+  try {
+    const users = await showUsers();
+    res.status(200).json(users);
+  } catch (error) {
+    message: error;
+  }
 };
 
+export const addUserHandler = async (req: Request, res: Response) => {
+  try {
+    const user: IUser = await createUser(req.body);
+    res.status(200).json({ message: "User added successfully", user });
+  } catch (error) {
+    res.status(500).json({ message: error });
+  }
+};
+/*
 export const getUserById = (req: Request, res: Response) => {
   const id = req.params.id;
   const userFound = users.find((user) => user.id === id);
@@ -18,18 +33,6 @@ export const getUserById = (req: Request, res: Response) => {
   }
 };
 
-export const addUserHandler = (req: Request, res: Response) => {
-  const user: User = req.body;
-  /**
- const newId = users.reduce((max, user) => Math.max(max, user.id), 0) + 1;
- oppure: user.push({ ...user, id: newId = uuidv4() });
- °metodo .reduce, math.max, push
- °metodo push, uuid
- °metodo push, Date.now
- */
-  users.push({ ...user, id: Date.now().toString() });
-  res.status(200).json(user);
-};
 
 export const deleteUserbyId = (req: Request, res: Response) => {
   const body = req.params.body;
@@ -40,7 +43,7 @@ export const deleteUserbyId = (req: Request, res: Response) => {
       message: "User deleted successfully",
       user: users[indexUserFound],
     });
-    users.splice(indexUserFound, 0);
+    users.splice(indexUserFound, 1);
   } else {
     res.status(400).json({ message: "User not found" });
     throw new Error("User not found");
@@ -61,5 +64,6 @@ export const updateUserHandler = (req: Request, res: Response) => {
     throw new Error("User not found");
   }
 };
+*/
 // rabase è l'inserimento della branch secondaria nel ramo principale considerando che il ramo principale sia andato avanti anche lui nello sviluppo
 // merge è l'inserimento... con il ramo principale invece che si è fermato nel momento in cui sei andato nel ramo secondario
