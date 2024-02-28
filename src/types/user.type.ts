@@ -1,11 +1,11 @@
 export interface IUser {
-  id: string;
-  name: string;
-  age: string;
-  email: string;
-  password: string;
+  id: string
+  name: string
+  age: string
+  email: string
+  password: string
 }
-
+/*
 interface Subject {
   id: number;
   name: string;
@@ -16,4 +16,4 @@ interface Subject {
 export interface Student {
   userId: number;
   subjects: Subject[];
-}
+}*/

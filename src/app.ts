@@ -3,7 +3,7 @@ import { router as userApi } from "./routes/user.routes";
 // import { router as postApi } from "./routes/post.routes"; //ancora da settare
 
 const app = express();
-app.use(express.json());
+app.use(express.json()); //abilitare l'acquisizione di json tramite req.body
 const PORT = 3000;
 
 app.get("/", (req, res) => {
@@ -19,3 +19,4 @@ app.listen(PORT, () => {
 });
 */
 export default app;
+// il progetto funzionava anche senza mongodb e typescript installati.
