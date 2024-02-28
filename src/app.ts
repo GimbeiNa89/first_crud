@@ -1,5 +1,7 @@
 import express from "express";
 import { router as userApi } from "./routes/user.routes";
+import { router as productApi } from "./routes/product.routes";
+
 // import { router as postApi } from "./routes/post.routes"; //ancora da settare
 
 const app = express();
@@ -11,7 +13,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/users", userApi);
-// app.use("/posts", postApi);
+app.use("/products", productApi);
 
 /*
 app.listen(PORT, () => {
